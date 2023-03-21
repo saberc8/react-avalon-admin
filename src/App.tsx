@@ -1,13 +1,12 @@
-import React from 'react'
-import { Button } from 'antd'
-import AppLayout from './layouts/index'
-function App() {
+import React, { FC } from 'react'
+import { HashRouter } from 'react-router-dom'
+import Router from '@/router/index'
+
+const App: FC = () => {
   return (
-    <div className="App">
-      <div>1</div>
-      <AppLayout></AppLayout>
-      <Button type="primary">Button</Button>
-    </div>
+    <HashRouter>
+      <Router />
+    </HashRouter>
   )
 }
 
