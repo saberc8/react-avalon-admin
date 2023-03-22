@@ -1,4 +1,4 @@
-import { defHttp } from '@/utils/http/axios'
+import request from '@/utils/request'
 import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel'
 
 enum Api {
@@ -10,46 +10,18 @@ enum Api {
   InitDatabase = '/user/initDatabase',
 }
 
-/**
- * @description: user login api
- */
-export function loginApi(params: LoginParams) {
-  return defHttp.post<LoginResultModel>({
+
+export function login(data: any) {
+  return request({
     url: Api.Login,
-    params,
-  })
-}
-
-/**
- * @description: getUserInfo
- */
-export function getUserInfo(id: number) {
-  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo, params: { id } })
-}
-
-/**
- * @description: getUserList
- */
-export function getUserList(params) {
-  return defHttp.get({ url: Api.GerUserList, params })
-}
-
-export function doLogout() {
-  return defHttp.get({ url: Api.Logout })
-}
-
-/**
- * @description: user login api
- */
-export function addUser(params) {
-  return defHttp.post({
-    url: Api.AddUser,
-    params,
+    method: 'post',
+    data,
   })
 }
 
 export function initDatabase() {
-  return defHttp.post({
+  return request({
     url: Api.InitDatabase,
+    method: 'get',
   })
 }
