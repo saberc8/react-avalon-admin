@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input } from 'antd'
 import './login.less'
+import { useTitle } from 'ahooks'
 const LoginPage = () => {
+  useTitle('登录')
   return (
     <div className='login-container'>
       <h1>Welcome</h1>
