@@ -36,7 +36,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
 			preprocessorOptions: {
 				less: {
 					javascriptEnabled: true,
-					additionalData: '@import "@/styles/_variables.less";@import "@/styles/_mixins.less";',
+					additionalData: '@import "@/styles/global.less";',
 				},
 			},
 		},

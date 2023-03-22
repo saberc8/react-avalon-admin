@@ -1,9 +1,18 @@
-import React from "react"
-
+import React from 'react'
+import { Button, Checkbox, Form, Input } from 'antd'
+import './login.less'
 const LoginPage = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className='login-container'>
+      <h1>Welcome</h1>
+      <p>基于vite构建的react admin</p>
+      <div>
+        <Form>
+          <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
+            <Input />
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   )
 }
