@@ -11,7 +11,8 @@ class User {
   @action login = async (data: any) => {
     try {
       const response: any = await login(data)
-      const { token } = response
+      console.log(response, 'result')
+      const token = response.token
       return Promise.resolve(response)
     } catch (e) {
       return Promise.reject(e)

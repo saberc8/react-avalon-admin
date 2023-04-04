@@ -33,6 +33,8 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     const { data } = response
+    console.log('response12121212', data)
+
     if (data) {
       if (data.code !== 0) {
         notification.error({
@@ -41,7 +43,7 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(new Error(data.message || 'Error'))
       }
     }
-    return Promise.resolve(data)
+    return Promise.resolve(data.result)
   },
   (error) => {
     console.error('error', error)
@@ -52,7 +54,7 @@ axiosInstance.interceptors.response.use(
 export default function request<T = any>(config: AxiosRequestConfig): Promise<Response<T>> {
   return new Promise((resolve, reject) => {
     axiosInstance.request(config).then((res) => {
-      resolve(res.data)
+      resolve(res)
     }).catch((error) => {
       reject(error)
     })

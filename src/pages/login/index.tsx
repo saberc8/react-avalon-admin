@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd'
 import './login.less'
 import { useTitle } from 'ahooks'
 import { useStore } from '@/store'
+import { useNavigate } from 'react-router-dom'
 interface LoginForm {
   username: string
   password: string
@@ -12,6 +13,7 @@ const LoginPage: React.FC = () => {
   const [form] = Form.useForm<LoginForm>()
   const [loading, setLoading] = useState(false)
   const { userStore } = useStore()
+  const navigate = useNavigate()
   const { validateFields } = form
   const rules = {
     username: [
@@ -31,8 +33,11 @@ const LoginPage: React.FC = () => {
     if (validate) {
       const res = await userStore.login(values)
       console.log(res, 'res')
+      if(res) {
+        setLoading(true)
+        navigate('/basic/dashboard')
+      }
     }
-    setLoading(true)
   }
   return (
     <div className="login-container">
@@ -45,7 +50,7 @@ const LoginPage: React.FC = () => {
           onFinish={onFinish}
           initialValues={{
             username: 'admin',
-            password: '1234561',
+            password: '123456',
           }}
         >
           <Form.Item label="Username" name="username" rules={rules.username}>

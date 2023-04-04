@@ -32,6 +32,7 @@ export const routes = [
       key: 'login',
     },
   },
+  ...routerArray,
 ]
 
 const Router = () => {

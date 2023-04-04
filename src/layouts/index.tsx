@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Outlet } from 'react-router-dom'
 import AppHeader from './Header'
 import AppSider from './Sider'
 
@@ -8,6 +8,7 @@ const AppLayout = () => {
     <div>
       <AppHeader />
       <AppSider />
+      <Outlet />
     </div>
   )
 }
