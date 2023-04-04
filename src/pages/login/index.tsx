@@ -11,12 +11,27 @@ const LoginPage: React.FC = () => {
   useTitle('登录')
   const [form] = Form.useForm<LoginForm>()
   const [loading, setLoading] = useState(false)
-  // const { useStore } = useStore()
+  const { userStore } = useStore()
   const { validateFields } = form
+  const rules = {
+    username: [
+      { required: true, message: '请填写用户名', trigger: 'blur' },
+      { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
+    ],
+    password: [
+      { required: true, message: '请填写密码', trigger: 'blur' },
+      { min: 5, max: 20, message: '长度在 5 到 20 个字符', trigger: 'blur' },
+    ],
+  }
   const onFinish = async (values: LoginForm) => {
+    console.log(values)
     const validate = await validateFields()
     console.log('Success:', validate)
     console.log('Success:', values)
+    if (validate) {
+      const res = await userStore.login(values)
+      console.log(res, 'res')
+    }
     setLoading(true)
   }
   return (
@@ -26,17 +41,17 @@ const LoginPage: React.FC = () => {
       <div>
         <Form
           layout="horizontal"
-          // form={form}
+          form={form}
           onFinish={onFinish}
           initialValues={{
             username: 'admin',
-            password: '123456',
+            password: '1234561',
           }}
         >
-          <Form.Item label="Username" name="username">
+          <Form.Item label="Username" name="username" rules={rules.username}>
             <Input />
           </Form.Item>
-          <Form.Item label="Password" name="password">
+          <Form.Item label="Password" name="password" rules={rules.password}>
             <Input.Password />
           </Form.Item>
           <Form.Item>

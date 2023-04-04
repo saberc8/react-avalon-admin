@@ -7,9 +7,11 @@ export interface Response<T> {
   data: T;
   message: string;
 }
-
+const baseURL = import.meta.env.VITE_API_URL
+console.log(import.meta)
+console.log(baseURL)
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.REACT_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 5000,
 })
 
@@ -34,7 +36,7 @@ axiosInstance.interceptors.response.use(
     if (data) {
       if (data.code !== 0) {
         notification.error({
-          message: data.message,
+          message: data.message || 'Error',
         })
         return Promise.reject(new Error(data.message || 'Error'))
       }

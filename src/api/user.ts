@@ -10,7 +10,6 @@ enum Api {
   InitDatabase = '/user/initDatabase',
 }
 
-
 export function login(data: any) {
   return request({
     url: Api.Login,
