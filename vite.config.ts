@@ -8,8 +8,6 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
 	const root = process.cwd()
 	const env = loadEnv(mode, root)
 	const { VITE_BASE_URL } = env
-	console.log('')
-
 	process.env = { ...process.env, ...loadEnv(mode, root) }
 
 	return defineConfig({
@@ -28,7 +26,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
 		},
 		server: {
 			hmr: { overlay: false }, // 为 false 可以禁用服务器错误遮罩层
-			port: 6127,
+			port: 3009,
 			open: false,
 			host: '0.0.0.0',
 		},
