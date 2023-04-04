@@ -32,6 +32,10 @@ export const routes = [
       key: 'login',
     },
   },
+  {
+    path: '*',
+    element: <Navigate to="/basic/error/404" />,
+  },
   ...routerArray,
 ]
 
