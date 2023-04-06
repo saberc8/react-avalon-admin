@@ -6,16 +6,14 @@ import App from './App'
 import './index.css'
 // import '@/styles/global.less'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <ConfigProvider
-      locale={zhCN}
-      theme={{
-        token: {
-          // colorPrimary: '#00b96b',
-        },
-      }}
-    >
-      <App />
-    </ConfigProvider>
-  </React.StrictMode>
+  <ConfigProvider
+    locale={zhCN}
+    theme={{
+      token: {
+        // colorPrimary: '#00b96b',
+      },
+    }}
+  >
+    <App />
+  </ConfigProvider>
 )

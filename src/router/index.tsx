@@ -35,6 +35,7 @@ export const routes = [
   {
     path: '*',
     element: <Navigate to="/basic/error/404" />,
+    hidden: true,
   },
   ...routerArray,
 ]
