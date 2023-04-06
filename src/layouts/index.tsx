@@ -1,15 +1,17 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Layout } from 'antd'
 import AppHeader from './Header'
 import AppSider from './Sider'
-
+import AppContent from './Content'
 const AppLayout = () => {
   return (
-    <div>
-      <AppHeader />
+    <Layout className="app-layout">
       <AppSider />
-      <Outlet />
-    </div>
+      <Layout style={{ minHeight: '100vh' }}>
+        <AppHeader />
+        <AppContent />
+      </Layout>
+    </Layout>
   )
 }
 

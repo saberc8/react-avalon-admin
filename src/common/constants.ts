@@ -3,7 +3,7 @@ import { version } from '../../package.json'
 interface ICodeMessage {
   [propName: number]: string
 }
-
+export const APP_NAME = 'react admin'
 export const CodeMessage: ICodeMessage = {
   200: '服务器成功返回请求的数据。',
 }
