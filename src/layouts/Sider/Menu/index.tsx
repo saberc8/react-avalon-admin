@@ -11,22 +11,31 @@ const SideMenu: FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { pathname } = location
-  const [openMenu, setOpenMenu] = useState<Array<string>>([])
+  // const [openMenu, setOpenMenu] = useState<Array<string>>([])
   const openKey: Array<string> = [pathname]
-  useEffect(() => {
-    pathname !== '/' && handleDefaultSelect()
-  }, [])
 
-  // 刷新页面，处理默认选中
-  const handleDefaultSelect = () => {
-    const currentPathArray = pathname.split('/')
-    if (currentPathArray.length === 4) {
-      const currentKey = [`/${currentPathArray[1]}`, `/${currentPathArray[1]}/${currentPathArray[2]}`]
-      setOpenMenu(currentKey)
-    } else {
-      const currentKey = [`/${currentPathArray[1]}`]
-      setOpenMenu(currentKey)
-    }
+  // useEffect(() => {
+  //   pathname !== '/' && handleDefaultSelect()
+  // }, [pathname])
+
+  // // 刷新页面，处理默认选中
+  // const handleDefaultSelect = () => {
+  //   const currentPathArray = pathname.split('/')
+  //   if (currentPathArray.length === 4) {
+  //     const currentKey = [`/${currentPathArray[1]}`, `/${currentPathArray[1]}/${currentPathArray[2]}`]
+  //     setOpenMenu(currentKey)
+  //   } else {
+  //     const currentKey = [`/${currentPathArray[1]}`]
+  //     setOpenMenu(currentKey)
+  //   }
+  // }
+
+  let openMenu = []
+  const currentPathArray = pathname.split('/')
+  if (currentPathArray.length === 4) {
+    openMenu = [`/${currentPathArray[1]}`, `/${currentPathArray[1]}/${currentPathArray[2]}`]
+  } else {
+    openMenu = [`/${currentPathArray[1]}`]
   }
 
   const getMenuTree = (routers: IRoute[]) => {
@@ -46,6 +55,7 @@ const SideMenu: FC = () => {
     if (key === pathname) return
     navigate(item.key)
   }
+  
   return (
     <div className="app-side-menu" style={{ height: window.innerHeight - 64 }}>
       <Menu
@@ -54,7 +64,7 @@ const SideMenu: FC = () => {
         inlineIndent={15}
         items={menuItems}
         defaultSelectedKeys={openKey}
-        openKeys={openMenu}
+        defaultOpenKeys={openMenu}
         onClick={handleMenuClick}
       />
     </div>
